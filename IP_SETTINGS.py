@@ -5,8 +5,8 @@ import os
 from scapy.all import ARP, Ether, srp
 
 print("IP_SETTINGS by Alwex Developer")
-print("v0.0.1")
-print("help - показ команд; list - просканирование и вывод айпи в сети; open - открытие айпи в браузере; change - изменение айпи; scan - сканирование подключенных устройств; exit - выйти")
+print("v0.0.2")
+print("help - показ команд; cls - очистка экрана; list - сканирование и вывод айпи которые используются компьютером ; open - открытие айпи в браузере; change - изменение сетевых параметров IPv4; scan - сканирование подключенных устройств; exit - выйти")
 
 def get_local_ip_addresses():
     ip_addresses = []
@@ -65,7 +65,7 @@ while True:
             interface = local_ips[choice][0]
             new_ip = input("Введите новый IP: ")
             netmask = input("Введите новую маску подсети: ")
-            gateway = input("Введите основной шлюз: ")
+            gateway = input("Введите основной шлюз(IP-адрес вашего роутера): ")
             dns_server = input("Введите новый DNS сервер: ")
             alternate_dns = input("Введите альтернативный DNS сервер: ")
             change_ip(interface, old_ip, new_ip, netmask, gateway, dns_server, alternate_dns)
@@ -73,7 +73,7 @@ while True:
         else:
             print("Неверный выбор. Пожалуйста, попробуйте снова.")
     elif command == "scan":
-        ip_range = input("Введите диапазон IP для сканирования (например, 192.168.1.0/24): ")
+        ip_range = input("Введите диапазон IP для сканирования (например, (IP-адрес вашего роутера)/24): ")
         devices = scan_network(ip_range)
         if devices:
             print("Найденные устройства в сети:")
@@ -82,7 +82,7 @@ while True:
         else:
             print("Устройства не найдены.")
     elif command == "help":
-        print("help - показ команд; list - просканирование и вывод айпи в сети; open - открытие айпи в браузере; change - изменение айпи; scan - сканирование подключенных устройств; exit - выйти")
+        print("help - показ команд; cls - очистка экрана; list - сканирование и вывод айпи которые используются компьютером ; open - открытие айпи в браузере; change - изменение сетевых параметров IPv4; scan - сканирование подключенных устройств; exit - выйти")
     elif command == "exit":
         break
     else:
